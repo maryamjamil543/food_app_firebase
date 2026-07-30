@@ -15,10 +15,10 @@ class DetailAppBar extends StatelessWidget {
           width: 44,
           height: 44,
           decoration: BoxDecoration(
-            color: AppColors.white,
+            color: AppColors.back, // Cream color
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
-              color: AppColors.black,
+              color:  AppColors.black, // Light grey border
               width: 1,
             ),
           ),
@@ -40,10 +40,10 @@ class DetailAppBar extends StatelessWidget {
           width: 44,
           height: 44,
           decoration: BoxDecoration(
-            color: AppColors.white,
+            color: AppColors.back, // Cream color
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
-              color: AppColors.black,
+              color:  AppColors.black,
               width: 1,
             ),
           ),

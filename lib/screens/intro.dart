@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../utils/app_colors.dart';
 import 'home.dart';
 
@@ -46,23 +47,20 @@ class IntroScreen extends StatelessWidget {
 
                   Text(
                     "Find and Get\nYour Best Food",
-                    style: TextStyle(
+                    style: GoogleFonts.roboto(
                       color: AppColors.white,
                       fontSize: 36,
                       fontWeight: FontWeight.w500,
-                      fontFamily: 'Roboto',
                     ),
                   ),
 
                   const SizedBox(height: 16),
                   Text(
                     "Find the most delicious food\nwith the best quality and free delivery here.",
-                    style: TextStyle(
+                    style: GoogleFonts.roboto(
                       color: AppColors.white,
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
-                      fontFamily: 'Roboto',
-                      height: 1.5,
                     ),
                   ),
 
@@ -80,24 +78,22 @@ class IntroScreen extends StatelessWidget {
                       },
                       child: Image.asset(
                         "assets/images/next.png",
-                        width: 81,
-                        height: 81,
+                        width: 60,
+                        height: 60,
                       ),
                     ),
                   ),
 
-                  const SizedBox(height: 31),
+                  const SizedBox(height: 25),
 
-                  const Center(
+                   Center(
                     child: Text(
                       "Skip",
-                      style: TextStyle(
+                      style: GoogleFonts.roboto(
                         color: AppColors.white,
                         fontSize: 18,
-                        fontFamily: 'Roboto',
                         fontWeight: FontWeight.w400,
-                      ),
-                    ),
+                      ),                    ),
                   ),
 
                 ],

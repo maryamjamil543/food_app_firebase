@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../utils/app_colors.dart';
 import '../screens/food_detail.dart';
 
@@ -44,7 +45,7 @@ class FoodCard extends StatelessWidget {
             children: [
 
               // Rating
-              const Row(
+               Row(
                 children: [
                   Icon(
                     Icons.star,
@@ -56,9 +57,9 @@ class FoodCard extends StatelessWidget {
 
                   Text(
                     "4.8",
-                    style: TextStyle(
+                    style: GoogleFonts.dmSans(
+                      color: AppColors.black,
                       fontSize: 12,
-                      fontFamily: 'DM Sans',
                       fontWeight: FontWeight.w400,
                     ),
                   ),
@@ -81,11 +82,10 @@ class FoodCard extends StatelessWidget {
               // Name
               Text(
                 name,
-                style: const TextStyle(
+                style: GoogleFonts.dmSans(
+                  color: AppColors.black,
                   fontSize: 17,
                   fontWeight: FontWeight.w700,
-                  fontFamily: 'DM Sans',
-                  color: AppColors.black,
                 ),
               ),
 
@@ -97,10 +97,9 @@ class FoodCard extends StatelessWidget {
                   description,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontSize: 12,
+                  style: GoogleFonts.dmSans(
                     color: AppColors.black,
-                    fontFamily: 'DM Sans',
+                    fontSize: 12,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -118,7 +117,7 @@ class FoodCard extends StatelessWidget {
                         children: [
                           TextSpan(
                             text: price.substring(0, price.length - 3),
-                            style: const TextStyle(
+                            style: GoogleFonts.dmSans(
                               color: AppColors.buttonColor,
                               fontSize: 14,
                               fontWeight: FontWeight.w700,
@@ -127,10 +126,10 @@ class FoodCard extends StatelessWidget {
 
                           TextSpan(
                             text: price.substring(price.length - 3),
-                            style: const TextStyle(
+                            style: GoogleFonts.dmSans(
                               color: AppColors.buttonColor,
                               fontSize: 10,
-                              fontWeight: FontWeight.w700,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
                         ],

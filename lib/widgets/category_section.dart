@@ -1,8 +1,61 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../utils/app_colors.dart';
 
 class CategorySection extends StatelessWidget {
   const CategorySection({super.key});
+
+  Widget categoryItem(
+      String image,
+      String title,
+      bool selected,
+      ) {
+    return Container(
+      width: 150,
+      height: 55,
+
+      decoration: BoxDecoration(
+        color: selected
+            ? AppColors.buttonColor
+            : AppColors.white,
+
+        borderRadius: BorderRadius.circular(15),
+
+        border: Border.all(
+          color: AppColors.buttonColor,
+          width: 2,
+        ),
+      ),
+
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+
+        children: [
+          const SizedBox(width: 12),
+          Image.asset(
+            image,
+            height: 30,
+            width: 30,
+          ),
+
+          const SizedBox(width: 6),
+
+          Text(
+            title,
+            style: GoogleFonts.dmSans(
+              color: selected
+                  ? AppColors.white
+                  : AppColors.black,
+
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -10,89 +63,52 @@ class CategorySection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
 
       children: [
-        const Text(
+
+        Text(
           "Categories",
-          style: TextStyle(
+          style: GoogleFonts.roboto(
+            color: AppColors.category,
             fontSize: 18,
             fontWeight: FontWeight.w500,
-            fontFamily: 'Roboto',
-            color: AppColors.category,
           ),
         ),
 
         const SizedBox(height: 10),
 
         SizedBox(
-          height: 45,
+          height: 55,
+
           child: ListView(
             scrollDirection: Axis.horizontal,
+
             children: [
-              Chip(
-                avatar: Image.asset(
-                  "assets/images/burger.png",
-                  height: 25,
-                  width: 25,
-                ),
-                label: const Text("Burger",
-                  style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700,
-                  fontFamily: 'DM Sans',
-                   color: AppColors.black,
-                  ),
-                ),
-                backgroundColor: AppColors.buttonColor,
-                side: BorderSide(
-                  color: AppColors.buttonColor,
-                  width: 1,
-                ),
+
+              categoryItem(
+                "assets/images/burger.png",
+                "Burger",
+                true,
               ),
+
 
               const SizedBox(width: 10),
 
-              Chip(
-                avatar: Image.asset(
-                  "assets/images/pizza.png",
-                  height: 25,
-                  width: 25,
-                ),
-                label: const Text("Pizza",
-                   style: TextStyle(
-                   fontSize: 18,
-                   fontWeight: FontWeight.w700,
-                    fontFamily: 'DM Sans',
-                   color: AppColors.black,
-                   ),
-                ),
-                backgroundColor: Colors.white,
-                side: BorderSide(
-                  color: AppColors.buttonColor,
-                  width: 1,
-                ),
+
+              categoryItem(
+                "assets/images/pizza.png",
+                "Pizza",
+                false,
               ),
+
 
               const SizedBox(width: 10),
 
-              Chip(
-                avatar: Image.asset(
-                  "assets/images/sandwich.png",
-                  height: 25,
-                  width: 25,
-                ),
-                label: const Text("Sandwich",
-                   style: TextStyle(
-                   fontSize: 18,
-                    fontWeight: FontWeight.w700,
-                     fontFamily: 'DM Sans',
-                     color: AppColors.black,
-                    ),
-                ),
-                backgroundColor: AppColors.background,
-                side: BorderSide(
-                  color: AppColors.buttonColor,
-                  width: 1,
-                ),
+
+              categoryItem(
+                "assets/images/sandwich.png",
+                "Sandwich",
+                false,
               ),
+
             ],
           ),
         ),

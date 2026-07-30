@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../utils/app_colors.dart';
 
 class FoodInfo extends StatefulWidget {
@@ -15,32 +16,84 @@ class _FoodInfoState extends State<FoodInfo> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Row(
+          children: [
+            Expanded(
+              child: Text(
+                "Chicken\nburger",
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
 
-        // Price & Quantity
+                  style: GoogleFonts.dmSans(
+                    color: AppColors.black,
+                    fontSize: 26,
+                    fontWeight: FontWeight.w700,
+                  ),
+              ),
+            ),
+
+            Icon(
+              Icons.star,
+              color: AppColors.star,
+              size: 26,
+            ),
+
+            SizedBox(width: 3),
+
+
+
+        RichText(
+          text: TextSpan(
+            children: [
+
+              TextSpan(
+                text: "4.8",
+                style: GoogleFonts.dmSans(
+                  color: AppColors.black,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+
+              TextSpan(
+                text: " (41 Reviews)",
+                style: GoogleFonts.dmSans(
+                  color: AppColors.black,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+
+            ],
+          ),
+        ),
+        ],
+        ),
+
+        const SizedBox(height:25),
+
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
 
             RichText(
-              text: const TextSpan(
+              text: TextSpan(
                 children: [
 
                   TextSpan(
                     text: "\$22.",
-                    style: TextStyle(
+                    style: GoogleFonts.dmSans(
                       color: AppColors.buttonColor,
                       fontSize: 24,
-                      fontFamily: "DM Sans",
                       fontWeight: FontWeight.w700,
                     ),
                   ),
 
                   TextSpan(
                     text: "00",
-                    style: TextStyle(
+                    style: GoogleFonts.dmSans(
                       color: AppColors.buttonColor,
                       fontSize: 18,
-                      fontFamily: "DM Sans",
                       fontWeight: FontWeight.w400,
                     ),
                   ),
@@ -50,41 +103,54 @@ class _FoodInfoState extends State<FoodInfo> {
             ),
 
 
-            Row(
-              children: [
-                GestureDetector(
-                  onTap: (){
-                    if(quantity > 1){
-                      setState(() {
-                        quantity--;
-                      });
-                    }
-                  },
-                  child: circleButton(Icons.remove),
-                ),
+            Container(
+              width: 118,
+              height: 38,
+              padding: const EdgeInsets.symmetric(horizontal: 6),
 
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: Text(
+              decoration: BoxDecoration(
+                color: AppColors.back,
+                borderRadius: BorderRadius.circular(40),
+              ),
+
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+
+                  GestureDetector(
+                    onTap: (){
+                      if(quantity > 1){
+                        setState(() {
+                          quantity--;
+                        });
+                      }
+                    },
+                    child: quantityButton(Icons.remove),
+                  ),
+
+
+                  Text(
                     quantity.toString(),
-                    style: const TextStyle(
+                    style: GoogleFonts.dmSans(
+                      color: AppColors.black,
                       fontSize: 24,
                       fontWeight: FontWeight.w400,
-                      fontFamily: "DM Sans",
                     ),
                   ),
-                ),
 
-                GestureDetector(
-                  onTap: (){
-                    setState(() {
-                      quantity++;
-                    });
-                  },
-                  child: circleButton(Icons.add),
-                ),
-              ],
+                  GestureDetector(
+                    onTap: (){
+                      setState(() {
+                        quantity++;
+                      });
+                    },
+                    child: quantityButton(Icons.add),
+                  ),
+
+                ],
+              ),
             ),
+
           ],
         ),
 
@@ -114,15 +180,14 @@ class _FoodInfoState extends State<FoodInfo> {
         const SizedBox(height: 20),
 
         // About
-        const Align(
+         Align(
           alignment: Alignment.centerLeft,
           child: Text(
             "About",
-            style: TextStyle(
-              fontSize: 18,
+            style: GoogleFonts.dmSans(
               color: AppColors.black,
+              fontSize: 18,
               fontWeight: FontWeight.w500,
-              fontFamily: "DM Sans",
             ),
           ),
         ),
@@ -136,24 +201,34 @@ class _FoodInfoState extends State<FoodInfo> {
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: "Crispy seasoned chicken breast topped with melted cheese, "
+                  text: "Crispy seasoned chicken breast topped with, "
                       "mandatory melted cheese and piled onto soft rolls "
                       "with onion, avocado, lettuce, tomato and garlic mayo ",
 
-                  style: TextStyle(
+                  style: GoogleFonts.dmSans(
+                    color: AppColors.black,
                     fontSize: 14,
-                    color: AppColors.category,
-                    fontFamily: "DM Sans",
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
 
                 TextSpan(
-                  text: "if ordered.",
+                  text: "if ordered",
 
-                  style: TextStyle(
+                  style: GoogleFonts.dmSans(
+                    color: AppColors.ordered,
                     fontSize: 14,
-                    color: Colors.grey,
-                    fontFamily: "DM Sans",
+                    fontWeight: FontWeight.w400,
+                  ),
+
+                ),
+
+                TextSpan(
+                  text: ".",
+                  style: GoogleFonts.dmSans(
+                    color: AppColors.black,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
               ],
@@ -166,12 +241,12 @@ class _FoodInfoState extends State<FoodInfo> {
     );
   }
 
-  // Plus Minus Button
-  Widget circleButton(IconData icon){
+  Widget quantityButton(IconData icon){
 
     return Container(
-      width: 32,
-      height: 32,
+      width: 29,
+      height: 29,
+
       decoration: const BoxDecoration(
         color: AppColors.buttonColor,
         shape: BoxShape.circle,
@@ -180,9 +255,10 @@ class _FoodInfoState extends State<FoodInfo> {
       child: Icon(
         icon,
         color: AppColors.white,
-        size: 20,
+        size: 28,
       ),
     );
+
   }
 
   // Info Card
@@ -218,11 +294,10 @@ class _FoodInfoState extends State<FoodInfo> {
 
               Text(
                 title,
-                style: const TextStyle(
-                  fontSize: 14,
+                style: GoogleFonts.dmSans(
                   color: AppColors.buttonColor,
+                  fontSize: 14,
                   fontWeight: FontWeight.w500,
-                  fontFamily: "DM Sans",
                 ),
               ),
 
@@ -239,11 +314,10 @@ class _FoodInfoState extends State<FoodInfo> {
 
           Text(
             value,
-            style: const TextStyle(
-              fontSize: 18,
+            style: GoogleFonts.dmSans(
               color: AppColors.black,
+              fontSize: 17,
               fontWeight: FontWeight.w500,
-              fontFamily: "DM Sans",
             ),
           ),
         ],

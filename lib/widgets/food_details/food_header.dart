@@ -18,7 +18,7 @@ class FoodHeader extends StatelessWidget {
           ),
         ),
 
-        const SizedBox(height: 10),
+        const SizedBox(height: 3),
 
         // 4 Dot Indicator
         Row(
@@ -31,55 +31,6 @@ class FoodHeader extends StatelessWidget {
           ],
         ),
 
-        const SizedBox(height: 18),
-
-        // Title & Rating
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-
-            const Expanded(
-              child: Text(
-                "Chicken Burger",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontFamily: 'DM Sans',
-                  fontWeight: FontWeight.w700,
-                  color: AppColors.black,
-                ),
-              ),
-            ),
-
-            const Icon(
-              Icons.star,
-              color: AppColors.star,
-              size: 18,
-            ),
-
-            SizedBox(width: 5),
-
-            const Text(
-              "4.8",
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w400,
-                color: AppColors.black,
-              ),
-            ),
-
-            const SizedBox(width: 4),
-
-            const Text(
-              "(41 Reviews)",
-              style: TextStyle(
-                fontSize: 12,
-                fontFamily: 'DM Sans',
-                fontWeight: FontWeight.w400,
-                color: AppColors.black,
-              ),
-            ),
-          ],
-        ),
       ],
     );
   }

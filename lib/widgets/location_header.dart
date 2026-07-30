@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../utils/app_colors.dart';
 
 class LocationHeader extends StatelessWidget {
@@ -15,24 +16,24 @@ class LocationHeader extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
-                children: const [
-                  Icon(
-                    Icons.location_on,
-                    color: AppColors.buttonColor,
-                    size: 20,
+                children:  [
+                  Image.asset(
+                    "assets/images/Location.png",
+                    height: 25,
+                    width: 25,
                   ),
                   SizedBox(width: 4),
                   Text(
                     "Nevada, US",
-                    style: TextStyle(
+                    style: GoogleFonts.roboto(
+                      color: AppColors.black,
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
-                      fontFamily: 'Roboto',
                     ),
                   ),
                   Icon(
                     Icons.keyboard_arrow_down,
-                    size: 18,
+                    size: 20,
                     color: AppColors.buttonColor,
                   ),
                 ],
@@ -42,12 +43,10 @@ class LocationHeader extends StatelessWidget {
 
               Text(
                 "Order Your Food\nFast and Free",
-                style: TextStyle(
-                  fontSize: 28,
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.w500,
-                  height: 1.0,
+                style: GoogleFonts.roboto(
                   color: AppColors.black,
+                  fontSize: 28,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
             ],

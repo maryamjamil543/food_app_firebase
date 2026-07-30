@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../utils/app_colors.dart';
 
 class BottomNav extends StatelessWidget {
@@ -6,55 +7,110 @@ class BottomNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      currentIndex: 0,
-      selectedItemColor: AppColors.buttonColor,
-      selectedLabelStyle: const TextStyle(
-        fontSize: 12,
-        fontWeight: FontWeight.w500,
-        fontFamily: 'Roboto',
+    return Container(
+
+      decoration: BoxDecoration(
+        color: Colors.white,
+
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(25),
+          topRight: Radius.circular(25),
+        ),
+
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 10,
+            offset: Offset(0, -2),
+          ),
+        ],
       ),
 
-      items: [
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.home,
-            color: AppColors.buttonColor,
-            size: 28,
-          ),
-          label: "Home",
+
+      child: ClipRRect(
+
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(25),
+          topRight: Radius.circular(25),
         ),
 
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.shopping_bag_outlined,
-            color: AppColors.buttonColor,
-            size: 28,
-          ),
-          label: "",
-        ),
 
-        BottomNavigationBarItem(
-          icon: Container(
-            height: 30,
-            width: 30,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.white,
-              border: Border.all(
+        child: BottomNavigationBar(
+
+          backgroundColor: Colors.white,
+
+          elevation: 0,
+
+          currentIndex: 0,
+
+          selectedItemColor: AppColors.buttonColor,
+
+          unselectedItemColor: AppColors.buttonColor,
+
+
+          selectedLabelStyle: GoogleFonts.roboto(
+            color: AppColors.buttonColor,
+            fontSize: 12,
+            fontWeight: FontWeight.w500,
+          ),
+
+
+          type: BottomNavigationBarType.fixed,
+
+
+          items: [
+
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.home,
                 color: AppColors.buttonColor,
-                width: 2,
+                size: 28,
               ),
+              label: "Home",
             ),
-            child: const Icon(
-              Icons.more_horiz,
-              color: AppColors.buttonColor,
-              size: 22,
+
+
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.shopping_bag_outlined,
+                color: AppColors.buttonColor,
+                size: 28,
+              ),
+              label: "",
             ),
-          ),
-          label: "",
+
+
+            BottomNavigationBarItem(
+              icon: Container(
+
+                height: 30,
+                width: 30,
+
+                decoration: BoxDecoration(
+
+                  shape: BoxShape.circle,
+
+                  color: AppColors.white,
+
+                  border: Border.all(
+                    color: AppColors.buttonColor,
+                    width: 2,
+                  ),
+                ),
+
+
+                child: const Icon(
+                  Icons.more_horiz,
+                  color: AppColors.buttonColor,
+                  size: 22,
+                ),
+              ),
+
+              label: "",
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }

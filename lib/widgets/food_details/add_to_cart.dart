@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../utils/app_colors.dart';
 
 class AddToCartButton extends StatelessWidget {
@@ -7,8 +8,8 @@ class AddToCartButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 327,
-      height: 61,
+      width: 290,
+      height: 56,
 
       child: ElevatedButton(
         onPressed: () {
@@ -18,16 +19,16 @@ class AddToCartButton extends StatelessWidget {
           backgroundColor: AppColors.buttonColor,
           elevation: 0,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(18),
+            borderRadius: BorderRadius.circular(16),
           ),
         ),
 
-        child: const Text(
+        child: Text(
           "Add To Cart",
-          style: TextStyle(
+          style: GoogleFonts.dmSans(
+            color: AppColors.white,
             fontSize: 22,
             fontWeight: FontWeight.w500,
-            color: AppColors.white,
           ),
         ),
       ),

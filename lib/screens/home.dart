@@ -12,26 +12,26 @@ class HomeScreen extends StatelessWidget {
 
     {
       "image": "assets/images/chicken_burger.png",
-      "name": "Chicken Burger",
+      "name": "Chicken burger",
       "description": "Chicken + cheese\nLettuce + tomato",
       "price": "\$22.00",
     },
 
     {
       "image": "assets/images/cheese-burger.png",
-      "name": "Cheese Burger",
+      "name": "Cheese burger",
       "description": "Beef + cheese\nFresh vegetables",
       "price": "\$25.00",
     },
 
     {
       "image": "assets/images/cheese-burger.png",
-      "name": "Cheese Burger",
+      "name": "Cheese burger",
     },
 
     {
       "image": "assets/images/chicken_burger.png",
-      "name": "Chicken Burger",
+      "name": "Chicken burger",
     },
   ];
 
@@ -63,7 +63,7 @@ class HomeScreen extends StatelessWidget {
                     crossAxisCount: 2,
                     mainAxisSpacing: 18,
                     crossAxisSpacing: 18,
-                    childAspectRatio: .68,
+                    childAspectRatio: .60,
                   ),
 
                   itemBuilder: (context, index) {

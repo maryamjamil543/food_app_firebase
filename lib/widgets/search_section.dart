@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../utils/app_colors.dart';
 
 class SearchSection extends StatelessWidget {
@@ -13,10 +14,28 @@ class SearchSection extends StatelessWidget {
           child: TextField(
             decoration: InputDecoration(
               hintText: "Search",
-              prefixIcon: const Icon(Icons.search),
+
+              hintStyle: GoogleFonts.roboto(
+                color: AppColors.searchtext,
+                fontSize: 18,
+                fontWeight: FontWeight.w400,
+              ),
+
+              prefixIcon: Padding(
+                padding: const EdgeInsets.all(12),
+                child: Image.asset(
+                  "assets/images/Search.png",
+                  height: 25,
+                  width: 25,
+                ),
+              ),
 
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(
+                  color: AppColors.searchbar,
+                  width: 1.5,
+                ),
               ),
             ),
           ),
@@ -25,23 +44,25 @@ class SearchSection extends StatelessWidget {
         const SizedBox(width: 10),
 
         Container(
-          height: 50,
-          width: 50,
+          height: 60,
+          width: 60,
 
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: AppColors.white,
             borderRadius: BorderRadius.circular(12),
 
             border: Border.all(
-              color: AppColors.buttonColor, // orange border
+              color: AppColors.buttonColor,
               width: 1.5,
             ),
           ),
-          child: const Icon(
+
+          child: Icon(
             Icons.tune,
             color: AppColors.buttonColor,
+            size: 28,
           ),
-        )
+        ),
       ],
     );
   }

@@ -17,31 +17,29 @@ class FoodDetail extends StatelessWidget {
         child: Stack(
           children: [
 
-            /// Background
+            // Background
             Container(
               color: AppColors.back,
             ),
 
-            /// Header
+            // Header
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 children: const [
 
                   SizedBox(height: 15),
-
                   DetailAppBar(),
 
                   SizedBox(height: 15),
-
                   FoodHeader(),
                 ],
               ),
             ),
 
-            /// Bottom Sheet
+            // Bottom Sheet
             Positioned(
-              top: 305, // 305-315 ke beech adjust kar sakti ho
+              top: 305,
               left: 0,
               right: 0,
               bottom: 0,
@@ -59,7 +57,6 @@ class FoodDetail extends StatelessWidget {
 
                 child: Column(
                   children: [
-
                     Expanded(
                       child: SingleChildScrollView(
                         child: FoodInfo(),
@@ -67,7 +64,6 @@ class FoodDetail extends StatelessWidget {
                     ),
 
                     SizedBox(height: 15),
-
                     AddToCartButton(),
                   ],
                 ),

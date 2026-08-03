@@ -3,54 +3,75 @@ import 'package:google_fonts/google_fonts.dart';
 import '../utils/app_colors.dart';
 
 class SearchSection extends StatelessWidget {
-  const SearchSection({super.key});
+  final ValueChanged onChanged;
+
+  const SearchSection({
+    super.key,
+    required this.onChanged,
+  });
 
   @override
   Widget build(BuildContext context) {
+
     return Row(
       children: [
+        // Search Box
+        Container(
+          width: 250,
+          height: 60,
 
-        Expanded(
-          child: TextField(
-            decoration: InputDecoration(
-              hintText: "Search",
-
-              hintStyle: GoogleFonts.roboto(
-                color: AppColors.searchtext,
-                fontSize: 18,
-                fontWeight: FontWeight.w400,
-              ),
-
-              prefixIcon: Padding(
-                padding: const EdgeInsets.all(12),
-                child: Image.asset(
-                  "assets/images/Search.png",
-                  height: 25,
-                  width: 25,
-                ),
-              ),
-
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(
-                  color: AppColors.searchbar,
-                  width: 1.5,
-                ),
-              ),
+          decoration: BoxDecoration(
+            color: AppColors.white,
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(
+              color: AppColors.searchbar,
+              width: 1.0,
             ),
+          ),
+
+          child: Row(
+            children: [
+
+              const SizedBox(width: 15),
+
+              Image.asset(
+                "assets/images/Search.png",
+                width: 24,
+                height: 24,
+                fit: BoxFit.contain,
+              ),
+
+              const SizedBox(width: 10),
+
+              Expanded(
+                child: TextField(
+                  onChanged: onChanged,
+                  decoration: InputDecoration(
+                    hintText: "Search",
+                    hintStyle: GoogleFonts.dmSans(
+                      color: AppColors.searchtext,
+                      fontSize: 15,
+                    ),
+
+                    border: InputBorder.none,
+
+                    contentPadding: EdgeInsets.zero,
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
 
-        const SizedBox(width: 10),
-
+        const SizedBox(width: 12),
+        // Tune Button
         Container(
-          height: 60,
-          width: 60,
+          width: 56,
+          height: 56,
 
           decoration: BoxDecoration(
             color: AppColors.white,
             borderRadius: BorderRadius.circular(12),
-
             border: Border.all(
               color: AppColors.buttonColor,
               width: 1.5,
@@ -60,7 +81,7 @@ class SearchSection extends StatelessWidget {
           child: Icon(
             Icons.tune,
             color: AppColors.buttonColor,
-            size: 28,
+            size: 24,
           ),
         ),
       ],

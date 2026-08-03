@@ -11,6 +11,11 @@ class FoodInfo extends StatefulWidget {
 
 class _FoodInfoState extends State<FoodInfo> {
   int quantity = 1;
+  double itemPrice = 22.00;
+
+  double get totalPrice {
+    return itemPrice * quantity;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +45,6 @@ class _FoodInfoState extends State<FoodInfo> {
 
             SizedBox(width: 3),
 
-
-
         RichText(
           text: TextSpan(
             children: [
@@ -63,7 +66,6 @@ class _FoodInfoState extends State<FoodInfo> {
                   fontWeight: FontWeight.w400,
                 ),
               ),
-
             ],
           ),
         ),
@@ -81,7 +83,7 @@ class _FoodInfoState extends State<FoodInfo> {
                 children: [
 
                   TextSpan(
-                    text: "\$22.",
+                    text: "\$${totalPrice.toStringAsFixed(0)}.",
                     style: GoogleFonts.dmSans(
                       color: AppColors.buttonColor,
                       fontSize: 24,
@@ -101,7 +103,6 @@ class _FoodInfoState extends State<FoodInfo> {
                 ],
               ),
             ),
-
 
             Container(
               width: 118,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../utils/app_colors.dart';
-import 'home.dart';
+import '../widgets/bottom_nav.dart';
 
 class IntroScreen extends StatelessWidget {
   const IntroScreen({super.key});
@@ -72,7 +72,7 @@ class IntroScreen extends StatelessWidget {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const HomeScreen(),
+                            builder: (context) => const BottomNav(),
                           ),
                         );
                       },

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../models/food_models.dart';
 import '../../utils/app_colors.dart';
 import '../widgets/food_details/top_icon.dart';
 import '../widgets/food_details/food_header.dart';
@@ -6,47 +7,43 @@ import '../widgets/food_details/food_info.dart';
 import '../widgets/food_details/add_to_cart.dart';
 
 class FoodDetail extends StatelessWidget {
-  const FoodDetail({super.key});
+  final FoodModel food;
+
+  const FoodDetail({
+    super.key,
+    required this.food,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.back,
-
       body: SafeArea(
         child: Stack(
           children: [
+            Container(color: AppColors.back),
 
-            // Background
-            Container(
-              color: AppColors.back,
-            ),
-
-            // Header
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
-                children: const [
+                children: [
+                  const SizedBox(height: 15),
+                  const DetailAppBar(),
+                  const SizedBox(height: 15),
 
-                  SizedBox(height: 15),
-                  DetailAppBar(),
-
-                  SizedBox(height: 15),
-                  FoodHeader(),
+                  // Selected item pass karo
+                  FoodHeader(food: food),
                 ],
               ),
             ),
 
-            // Bottom Sheet
             Positioned(
               top: 305,
               left: 0,
               right: 0,
               bottom: 0,
               child: Container(
-                width: double.infinity,
                 padding: const EdgeInsets.fromLTRB(24, 28, 24, 20),
-
                 decoration: const BoxDecoration(
                   color: AppColors.white,
                   borderRadius: BorderRadius.only(
@@ -54,17 +51,15 @@ class FoodDetail extends StatelessWidget {
                     topRight: Radius.circular(35),
                   ),
                 ),
-
                 child: Column(
                   children: [
                     Expanded(
                       child: SingleChildScrollView(
-                        child: FoodInfo(),
+                        child: FoodInfo(food: food),
                       ),
                     ),
-
-                    SizedBox(height: 15),
-                    AddToCartButton(),
+                    const SizedBox(height: 15),
+                    const AddToCartButton(),
                   ],
                 ),
               ),

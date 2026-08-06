@@ -2,19 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../utils/app_colors.dart';
 import '../screens/food_detail.dart';
+import '../models/food_models.dart';
 
 class FoodCard extends StatelessWidget {
-  final String image;
-  final String name;
-  final String description;
-  final String price;
-
+  final FoodModel food;
   const FoodCard({
     super.key,
-    required this.image,
-    required this.name,
-    required this.description,
-    required this.price,
+    required this.food,
   });
 
   @override
@@ -26,14 +20,14 @@ class FoodCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const FoodDetail(),
+            builder: (context) => FoodDetail(food: food),
           ),
         );
       },
 
       child: Card(
         elevation: 2,
-        color: Colors.white,
+        color: AppColors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),
@@ -56,7 +50,7 @@ class FoodCard extends StatelessWidget {
                   SizedBox(width: 3),
 
                   Text(
-                    "4.8",
+                    food.rating,
                     style: GoogleFonts.dmSans(
                       color: AppColors.black,
                       fontSize: 12,
@@ -68,12 +62,17 @@ class FoodCard extends StatelessWidget {
 
               const SizedBox(height: 5),
 
-              // Burger Image
               Center(
-                child: Image.asset(
-                  image,
+                child: Image.network(
+                  food.image,
                   height: 70,
                   fit: BoxFit.contain,
+                  errorBuilder: (context, error, stackTrace) {
+                    return const Icon(
+                      Icons.image_not_supported,
+                      size: 50,
+                    );
+                  },
                 ),
               ),
 
@@ -81,7 +80,7 @@ class FoodCard extends StatelessWidget {
 
               // Name
               Text(
-                name,
+                food.name,
                 style: GoogleFonts.dmSans(
                   color: AppColors.black,
                   fontSize: 17,
@@ -92,9 +91,9 @@ class FoodCard extends StatelessWidget {
               const SizedBox(height: 3),
 
               // Description
-              if (description.isNotEmpty)
+              if (food.description.isNotEmpty)
                 Text(
-                  description,
+                  food.description,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: GoogleFonts.dmSans(
@@ -111,12 +110,12 @@ class FoodCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
                 children: [
-                  if (price.isNotEmpty)
+                  if (food.price.isNotEmpty)
                     RichText(
                       text: TextSpan(
                         children: [
                           TextSpan(
-                            text: price.substring(0, price.length - 3),
+                            text: food.price.substring(0, food.price.length - 3),
                             style: GoogleFonts.dmSans(
                               color: AppColors.buttonColor,
                               fontSize: 14,
@@ -125,7 +124,7 @@ class FoodCard extends StatelessWidget {
                           ),
 
                           TextSpan(
-                            text: price.substring(price.length - 3),
+                            text: food.price.substring(food.price.length - 3),
                             style: GoogleFonts.dmSans(
                               color: AppColors.buttonColor,
                               fontSize: 10,
@@ -136,7 +135,7 @@ class FoodCard extends StatelessWidget {
                       ),
                     ),
 
-                  if (price.isNotEmpty)
+                  if (food.price.isNotEmpty)
                     Container(
                       height: 22,
                       width: 22,

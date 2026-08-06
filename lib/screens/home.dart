@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import '../widgets/location_header.dart';
 import '../widgets/search_section.dart';
+import '../../utils/app_colors.dart';
 import '../widgets/category_section.dart';
 import '../widgets/food_card.dart';
+import '../models/food_models.dart';
+import '../services/firebase_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,81 +15,64 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<Map<String,String>> foodList = const [
-
-    {
-      "image":"assets/images/chicken_burger.png",
-      "name":"Chicken burger",
-      "description":"Chicken + cheese\nLettuce + tomato",
-      "price":"\$22.00",
-      "category":"Burger",
-    },
-
-    {
-      "image":"assets/images/cheese-burger.png",
-      "name":"Cheese burger",
-      "description":"Beef + cheese\nFresh vegetables",
-      "price":"\$25.00",
-      "category":"Burger",
-    },
-
-    {
-      "image":"assets/images/cheese-burger.png",
-      "name":"Cheese burger",
-      "description":"Beef + Onion\nFresh vegetables",
-      "price":"\$25.00",
-      "category":"Burger",
-    },
-
-    {
-      "image":"assets/images/chicken_burger.png",
-      "name":"Chicken burger",
-      "description":"Chicken + cheese\nLettuce + tomato",
-      "price":"\$22.00",
-      "category":"Burger",
-    },
-
-    {
-      "image":"assets/images/pizza.png",
-      "name":"Pizza",
-      "description":"Cheese + Olives",
-      "price":"\$30.00",
-      "category":"Pizza",
-    },
-
-    {
-      "image":"assets/images/sandwich.png",
-      "name":"Sandwich",
-      "description":"Chicken + Mayo",
-      "price":"\$18.00",
-      "category":"Sandwich",
-    },
-  ];
-
+  final FirebaseService firebaseService = FirebaseService();
+  List<FoodModel> foodList = [];
   String searchText = "";
-  String selectedCategory = "Burger";
+  String selectedCategory = "pizza";
+
+  @override
+  void initState() {
+    super.initState();
+    loadFoods();
+  }
+
+  void loadFoods() async {
+    final foods = await firebaseService.getAllFoods();
+
+    setState(() {
+      foodList = foods;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+
+    // final filteredList = foodList.where((food) {
+    //   final query = searchText.trim().toLowerCase();
+    //
+    //   if(query.isNotEmpty){
+    //     return food.name
+    //         .toLowerCase()
+    //         .contains(query);
+    //   }
+    //
+    //   return food.name
+    //       .toLowerCase()
+    //       .contains(selectedCategory.toLowerCase());
+    // }).toList();
     final filteredList = foodList.where((food) {
-      if(searchText.isNotEmpty){
-        return food["name"]!
-            .toLowerCase()
-            .contains(searchText.toLowerCase());
+
+      final query = searchText.trim().toLowerCase();
+
+      if (query.isNotEmpty) {
+        return food.name.toLowerCase().contains(query);
       }
-      return food["category"] == selectedCategory;
+
+      return food.category.toLowerCase()
+          .contains(selectedCategory.toLowerCase());
+
     }).toList();
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.white,
       body: SafeArea(
         child: Padding(
+
           padding: const EdgeInsets.symmetric(horizontal:20),
           child: Column(
             children: [
               const SizedBox(height:20),
               const LocationHeader(),
-
               const SizedBox(height:25),
               SearchSection(
                 onChanged:(value){
@@ -98,12 +84,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
               const SizedBox(height:20),
               CategorySection(
-                selectedCategory:selectedCategory,
+                selectedCategory: selectedCategory,
                 onCategorySelected:(category){
                   setState((){
                     selectedCategory = category;
                     searchText = "";
                   });
+                  loadFoods();
                 },
               ),
 
@@ -113,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: GridView.builder(
                   itemCount: filteredList.length,
                   gridDelegate:
-                  const SliverGridDelegateWithFixedCrossAxisCount(
+                   SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount:2,
                     mainAxisSpacing:18,
                     crossAxisSpacing:18,
@@ -122,10 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                   itemBuilder:(context,index){
                     return FoodCard(
-                      image: filteredList[index]["image"]!,
-                      name: filteredList[index]["name"]!,
-                      description: filteredList[index]["description"]!,
-                      price: filteredList[index]["price"]!,
+                      food: filteredList[index],
                     );
                   },
                 ),

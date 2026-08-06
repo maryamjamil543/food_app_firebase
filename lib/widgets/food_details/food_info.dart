@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../utils/app_colors.dart';
+import '../../models/food_models.dart';
 
 class FoodInfo extends StatefulWidget {
-  const FoodInfo({super.key});
+
+  final FoodModel food;
+
+  const FoodInfo({
+    super.key,
+    required this.food,
+  });
 
   @override
   State<FoodInfo> createState() => _FoodInfoState();
@@ -11,10 +18,19 @@ class FoodInfo extends StatefulWidget {
 
 class _FoodInfoState extends State<FoodInfo> {
   int quantity = 1;
-  double itemPrice = 22.00;
+  late double itemPrice;
 
   double get totalPrice {
     return itemPrice * quantity;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    itemPrice = double.parse(
+      widget.food.price.replaceAll('\$', ''),
+    );
   }
 
   @override
@@ -25,7 +41,7 @@ class _FoodInfoState extends State<FoodInfo> {
           children: [
             Expanded(
               child: Text(
-                "Chicken\nburger",
+                widget.food.name,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
 
@@ -50,7 +66,7 @@ class _FoodInfoState extends State<FoodInfo> {
             children: [
 
               TextSpan(
-                text: "4.8",
+                text: widget.food.rating,
                 style: GoogleFonts.dmSans(
                   color: AppColors.black,
                   fontSize: 18,
@@ -202,9 +218,7 @@ class _FoodInfoState extends State<FoodInfo> {
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: "Crispy seasoned chicken breast topped with, "
-                      "mandatory melted cheese and piled onto soft rolls "
-                      "with onion, avocado, lettuce, tomato and garlic mayo ",
+                  text: widget.food.description,
 
                   style: GoogleFonts.dmSans(
                     color: AppColors.black,

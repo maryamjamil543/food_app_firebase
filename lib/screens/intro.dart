@@ -90,7 +90,7 @@ class IntroScreen extends StatelessWidget {
                     child: Text(
                       "Skip",
                       style: GoogleFonts.roboto(
-                        color: AppColors.white,
+                        color: AppColors.black,
                         fontSize: 18,
                         fontWeight: FontWeight.w400,
                       ),                    ),

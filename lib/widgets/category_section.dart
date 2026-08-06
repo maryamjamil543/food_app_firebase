@@ -88,22 +88,22 @@ class CategorySection extends StatelessWidget {
             children: [
               categoryItem(
                 "assets/images/burger.png",
-                "Burger",
-                selectedCategory == "Burger",
+                "burger",
+                selectedCategory == "burger",
               ),
 
               const SizedBox(width: 10),
               categoryItem(
                 "assets/images/pizza.png",
-                "Pizza",
-                selectedCategory == "Pizza",
+                "pizza",
+                selectedCategory == "pizza",
               ),
 
               const SizedBox(width: 10),
               categoryItem(
                 "assets/images/sandwich.png",
-                "Sandwich",
-                selectedCategory == "Sandwich",
+                "sandwich",
+                selectedCategory == "sandwich",
               ),
             ],
           ),

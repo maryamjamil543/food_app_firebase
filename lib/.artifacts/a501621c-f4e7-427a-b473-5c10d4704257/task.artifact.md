@@ -1,0 +1,3 @@
+- `[x]` Update `main.dart` to check `isLoggedIn` status
+- `[x]` Update `HomeScreen` to remove unused code
+- `[x]` Verify the fix

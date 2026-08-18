@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../widgets/location_header.dart';
 import '../widgets/search_section.dart';
 import '../../utils/app_colors.dart';
@@ -23,9 +24,15 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
+    getUserData();
     loadFoods();
   }
-
+  Future<void> getUserData() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.getString('username');
+     prefs.getString('email');
+     prefs.getBool('isLoggedIn') ?? false;
+  }
   void loadFoods() async {
     final foods = await firebaseService.getAllFoods();
 
@@ -71,22 +78,26 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: const EdgeInsets.symmetric(horizontal:20),
           child: Column(
             children: [
-              const SizedBox(height:20),
+              const SizedBox(height: 20),
+
               const LocationHeader(),
-              const SizedBox(height:25),
+
+              const SizedBox(height: 25),
+
               SearchSection(
-                onChanged:(value){
-                  setState((){
+                onChanged: (value) {
+                  setState(() {
                     searchText = value;
                   });
                 },
               ),
 
-              const SizedBox(height:20),
+              const SizedBox(height: 20),
+
               CategorySection(
                 selectedCategory: selectedCategory,
-                onCategorySelected:(category){
-                  setState((){
+                onCategorySelected: (category) {
+                  setState(() {
                     selectedCategory = category;
                     searchText = "";
                   });
@@ -94,20 +105,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
 
-              const SizedBox(height:20),
+              const SizedBox(height: 20),
 
               Expanded(
                 child: GridView.builder(
                   itemCount: filteredList.length,
-                  gridDelegate:
-                   SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount:2,
-                    mainAxisSpacing:18,
-                    crossAxisSpacing:18,
-                    childAspectRatio:.60,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 18,
+                    crossAxisSpacing: 18,
+                    childAspectRatio: .60,
                   ),
-
-                  itemBuilder:(context,index){
+                  itemBuilder: (context, index) {
                     return FoodCard(
                       food: filteredList[index],
                     );
